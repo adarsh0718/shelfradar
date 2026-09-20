@@ -1531,7 +1531,7 @@ if (typeof window !== 'undefined') {
     function Navbar({ currentMode, onModeChange, activeDeliveryCount = 0, gpsState, onRequestGPS, syncStatus = 'connected', currentUser, onLogout }) {
       return (
         <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/45 border-b border-white/70 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
             
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onModeChange && onModeChange('customer')}>
               <div className="w-11 h-11 rounded-2xl bg-slate-900 text-sky-400 flex items-center justify-center shadow-md">
@@ -2032,7 +2032,7 @@ if (typeof window !== 'undefined') {
             </a>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-[280px] sm:h-[350px] w-full bg-slate-100">
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-[280px] sm:h-[360px] lg:h-[460px] w-full bg-slate-100">
             <div ref={mapContainerRef} className="w-full h-full" style={{ zIndex: 1 }} />
           </div>
         </div>
@@ -2486,8 +2486,8 @@ if (typeof window !== 'undefined') {
                     </div>
                   </div>
 
-                  {/* Section Products Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* Section Products Grid - Optimized for Laptop (4-5 columns) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                     {secItems.map(prod => {
                       const discountPct = prod.mrp ? Math.round(((prod.mrp - prod.price) / prod.mrp) * 100) : 0;
                       const prodImage = (typeof PRODUCT_ACCURATE_SVGS !== 'undefined' && PRODUCT_ACCURATE_SVGS[prod.id]) 
@@ -2669,126 +2669,129 @@ if (typeof window !== 'undefined') {
         : claimedBroadcast;
 
       return (
-        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-12 flex flex-col items-center">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 py-6 sm:py-10 flex flex-col items-center">
           
           {/* Main Hero Header */}
-          <div className="text-center max-w-3xl mb-8 space-y-3">
+          <div className="text-center max-w-5xl mb-8 space-y-3">
             <span className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/60 border border-white/80 text-xs font-bold text-sky-800 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
               <span>1 KM Hyperlocal & Extended Wholesale Network • Vizag</span>
             </span>
-            <h1 className="text-4xl sm:text-6xl font-black text-slate-900 uppercase tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 uppercase tracking-tight leading-[1.08]">
               FIND & BUY LOCALLY, <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">1KM TO 20KM.</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto">
               Primary 1 KM emergency radar for instant 10-minute delivery. Expand to 5km, 10km, or 20km wholesale hubs to compare quotes and buy where it is cheapest!
             </p>
           </div>
 
           {!activeBroadcast && !claimedBroadcast && !currentOrder && (
-            <div className="w-full max-w-3xl space-y-6">
+            <div className="w-full max-w-6xl xl:max-w-7xl space-y-8">
               
-              {/* Location Center Anchor Bar */}
-              <div className="p-4 sm:p-5 rounded-3xl glass-card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-2xl bg-sky-100 text-sky-600 border border-sky-200 flex items-center justify-center font-bold text-lg shadow-sm">
-                    📍
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-2">
-                      <span className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                        Search Center Anchor
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                        {gpsState?.isLive ? '📡 Device GPS Locked' : '📍 Calibrated Vizag Anchor'}
-                      </span>
+              {/* Laptop-Optimized 2-Column Controls Grid: Location Anchor (Left) & Search Radius (Right) */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Location Center Anchor Bar */}
+                <div className="p-4 sm:p-5 rounded-3xl glass-card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 rounded-2xl bg-sky-100 text-sky-600 border border-sky-200 flex items-center justify-center font-bold text-lg shadow-sm">
+                      📍
                     </div>
-                    <p className="text-xs text-slate-600 font-medium">
-                      {gpsState?.address || 'Dwaraka Nagar, Visakhapatnam'} ({gpsState?.lat?.toFixed(4)}°N, {gpsState?.lng?.toFixed(4)}°E)
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <select
-                    value={VIZAG_NEIGHBORHOODS.find(n => Math.abs(n.lat - (gpsState?.lat || 0)) < 0.005 && Math.abs(n.lng - (gpsState?.lng || 0)) < 0.005)?.id || 'dwaraka'}
-                    onChange={(e) => {
-                      const found = VIZAG_NEIGHBORHOODS.find(n => n.id === e.target.value);
-                      if (found && onSelectNeighborhood) {
-                        onSelectNeighborhood(found);
-                      }
-                    }}
-                    className="px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-sm outline-none focus:ring-2 focus:ring-sky-500"
-                  >
-                    {VIZAG_NEIGHBORHOODS.map(n => (
-                      <option key={n.id} value={n.id}>{n.name}</option>
-                    ))}
-                  </select>
-
-                  <button
-                    type="button"
-                    onClick={onRequestGPS}
-                    title="Detect live GPS from device hardware"
-                    className="px-3 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 text-xs font-bold transition flex items-center space-x-1 shadow-sm"
-                  >
-                    <span>📡</span>
-                    <span className="hidden sm:inline">Use GPS</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Search Radius Scope Selector */}
-              <div className="p-4 sm:p-5 rounded-3xl glass-card space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <IconRadar className="w-4 h-4 text-sky-600 animate-spin-slow" />
-                    <span className="font-bold text-slate-900 text-xs sm:text-sm uppercase tracking-wider">
-                      Select Search Radius Scope
-                    </span>
-                  </div>
-                  <span className="text-[11px] font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded-full">
-                    {radiusKm === 1.0 ? '1 KM Default (Fastest)' : `${radiusKm} KM Expanded (Cheaper Deals)`}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {[
-                    { r: 1.0, label: '1 KM', desc: 'Hyperlocal (< 10 mins)', badge: 'PRIMARY', color: 'sky' },
-                    { r: 5.0, label: '5 KM', desc: 'Neighborhood (~18 mins)', badge: '18% OFF', color: 'indigo' },
-                    { r: 10.0, label: '10 KM', desc: 'City Hubs (~28 mins)', badge: '30% OFF', color: 'purple' },
-                    { r: 20.0, label: '20 KM', desc: 'Wholesale Depot (~40 mins)', badge: 'CHEAPEST 🔥', color: 'emerald' }
-                  ].map(item => (
-                    <button
-                      key={item.r}
-                      type="button"
-                      onClick={() => setRadiusKm(item.r)}
-                      className={`p-3 rounded-2xl text-left transition flex flex-col justify-between border ${
-                        radiusKm === item.r
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-lg ring-2 ring-sky-400/50'
-                          : 'bg-white/70 hover:bg-white text-slate-700 border-white/80'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between w-full">
-                        <span className="text-sm font-black">{item.label}</span>
-                        <span className={`text-[9px] font-black px-1.5 py-0.5 rounded uppercase ${
-                          radiusKm === item.r
-                            ? (item.r === 20.0 ? 'bg-emerald-400 text-slate-950' : 'bg-sky-400 text-slate-950')
-                            : (item.r === 20.0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600')
-                        }`}>
-                          {item.badge}
+                    <div>
+                      <div className="flex items-center space-x-2">
+                        <span className="font-bold text-slate-900 text-xs uppercase tracking-wider">
+                          Search Center Anchor
+                        </span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                          {gpsState?.isLive ? '📡 Device GPS Locked' : '📍 Calibrated Vizag Anchor'}
                         </span>
                       </div>
-                      <span className={`text-[11px] mt-1 ${radiusKm === item.r ? 'text-slate-300' : 'text-slate-500'}`}>
-                        {item.desc}
-                      </span>
+                      <p className="text-xs text-slate-600 font-medium">
+                        {gpsState?.address || 'Dwaraka Nagar, Visakhapatnam'} ({gpsState?.lat?.toFixed(4)}°N, {gpsState?.lng?.toFixed(4)}°E)
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <select
+                      value={VIZAG_NEIGHBORHOODS.find(n => Math.abs(n.lat - (gpsState?.lat || 0)) < 0.005 && Math.abs(n.lng - (gpsState?.lng || 0)) < 0.005)?.id || 'dwaraka'}
+                      onChange={(e) => {
+                        const found = VIZAG_NEIGHBORHOODS.find(n => n.id === e.target.value);
+                        if (found && onSelectNeighborhood) {
+                          onSelectNeighborhood(found);
+                        }
+                      }}
+                      className="px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-sm outline-none focus:ring-2 focus:ring-sky-500"
+                    >
+                      {VIZAG_NEIGHBORHOODS.map(n => (
+                        <option key={n.id} value={n.id}>{n.name}</option>
+                      ))}
+                    </select>
+
+                    <button
+                      type="button"
+                      onClick={onRequestGPS}
+                      title="Detect live GPS from device hardware"
+                      className="px-3 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 text-xs font-bold transition flex items-center space-x-1 shadow-sm"
+                    >
+                      <span>📡</span>
+                      <span className="hidden sm:inline">Use GPS</span>
                     </button>
-                  ))}
+                  </div>
+                </div>
+
+                {/* Search Radius Scope Selector */}
+                <div className="p-4 sm:p-5 rounded-3xl glass-card space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <IconRadar className="w-4 h-4 text-sky-600 animate-spin-slow" />
+                      <span className="font-bold text-slate-900 text-xs sm:text-sm uppercase tracking-wider">
+                        Select Search Radius Scope
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded-full">
+                      {radiusKm === 1.0 ? '1 KM Default (Fastest)' : `${radiusKm} KM Expanded (Cheaper Deals)`}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {[
+                      { r: 1.0, label: '1 KM', desc: 'Hyperlocal (< 10 mins)', badge: 'PRIMARY', color: 'sky' },
+                      { r: 5.0, label: '5 KM', desc: 'Neighborhood (~18 mins)', badge: '18% OFF', color: 'indigo' },
+                      { r: 10.0, label: '10 KM', desc: 'City Hubs (~28 mins)', badge: '30% OFF', color: 'purple' },
+                      { r: 20.0, label: '20 KM', desc: 'Wholesale Depot (~40 mins)', badge: 'CHEAPEST 🔥', color: 'emerald' }
+                    ].map(item => (
+                      <button
+                        key={item.r}
+                        type="button"
+                        onClick={() => setRadiusKm(item.r)}
+                        className={`p-3 rounded-2xl text-left transition flex flex-col justify-between border ${
+                          radiusKm === item.r
+                            ? 'bg-slate-900 text-white border-slate-900 shadow-lg ring-2 ring-sky-400/50'
+                            : 'bg-white/70 hover:bg-white text-slate-700 border-white/80'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between w-full">
+                          <span className="text-sm font-black">{item.label}</span>
+                          <span className={`text-[9px] font-black px-1.5 py-0.5 rounded uppercase ${
+                            radiusKm === item.r
+                              ? (item.r === 20.0 ? 'bg-emerald-400 text-slate-950' : 'bg-sky-400 text-slate-950')
+                              : (item.r === 20.0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600')
+                          }`}>
+                            {item.badge}
+                          </span>
+                        </div>
+                        <span className={`text-[11px] mt-1 ${radiusKm === item.r ? 'text-slate-300' : 'text-slate-500'}`}>
+                          {item.desc}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Main Distress Search Input Form */}
+              {/* Main Distress Search Input Form - Full Laptop Width */}
               <form onSubmit={handleBroadcast} className="relative">
-                <div className="relative flex items-center p-2 sm:p-2.5 rounded-full bg-white/70 backdrop-blur-2xl border border-white/90 shadow-lg">
+                <div className="relative flex items-center p-2.5 sm:p-3.5 rounded-full bg-white/80 backdrop-blur-2xl border border-white/90 shadow-xl hover:shadow-2xl transition">
                   <div className="pl-4 pr-3 text-sky-600">
                     <IconSearch className="w-6 h-6" />
                   </div>
@@ -2802,7 +2805,7 @@ if (typeof window !== 'undefined') {
                   <button
                     type="submit"
                     disabled={isRouting || !query.trim()}
-                    className="px-6 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider flex items-center space-x-2"
+                    className="px-8 py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center space-x-2 shadow-lg transition"
                   >
                     <span>Broadcast {radiusKm}KM Ping</span>
                   </button>
@@ -2829,7 +2832,7 @@ if (typeof window !== 'undefined') {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-56 overflow-y-auto pr-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-64 overflow-y-auto pr-1">
                   {nearbyShops.map(shop => (
                     <div key={shop.shopId} className="p-3 rounded-2xl bg-white/60 border border-white/80 flex items-center justify-between">
                       <div>
@@ -2957,7 +2960,7 @@ if (typeof window !== 'undefined') {
 
           {/* Quotes Received -> MULTI-STORE PRICE & DISTANCE COMPARISON (Buy where it is cheaper) */}
           {claimedBroadcast && !currentOrder && (
-            <div className="w-full max-w-4xl space-y-6">
+            <div className="w-full max-w-6xl xl:max-w-7xl space-y-6">
               
               {/* Header with Item Image & Price Present Simultaneously */}
               <div className="p-6 rounded-3xl bg-white/95 border-2 border-emerald-400 shadow-2xl space-y-4">
@@ -3012,13 +3015,13 @@ if (typeof window !== 'undefined') {
                   </div>
                 )}
 
-                {/* Multi-Quote Comparison Cards */}
+                {/* Multi-Quote Comparison Cards - Optimized for Laptop (2-3 columns) */}
                 <div className="space-y-3 pt-2">
                   <h4 className="text-xs font-black uppercase text-slate-700 tracking-wider">
                     COMPARE QUOTES ACROSS DISTANCE & PRICING ({availableQuotes.length} Stores Quoted):
                   </h4>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {availableQuotes.map((q, idx) => {
                       const bounty = claimedBroadcast.bounty || 20;
                       const dFee = q.deliveryFee || (q.distanceKm > 10 ? 55 : q.distanceKm > 3 ? 35 : 25);
@@ -3654,7 +3657,7 @@ if (typeof window !== 'undefined') {
       };
 
       return (
-        <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+        <div className="w-full max-w-xl lg:max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
           {/* Brand header */}
           <div className="text-center mb-8 space-y-3">
             <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/80 border border-white shadow-sm text-xs font-bold text-sky-800 uppercase tracking-widest">
