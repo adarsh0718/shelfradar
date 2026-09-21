@@ -15,7 +15,7 @@
 | ⚡ **AWS API Gateway WebSocket** | `wss://mk0k0vr59h.execute-api.us-east-1.amazonaws.com/dev` | Real-time full-duplex WebSocket server pushing live distress signals & quotes in < 200ms. |
 | 🔗 **API Gateway Connection URL** | `https://mk0k0vr59h.execute-api.us-east-1.amazonaws.com/dev` | Secure management callback URL for Lambda fan-out pushes. |
 | 📁 **Dedicated GitHub Repository** | **[https://github.com/adarsh0718/shelfradar](https://github.com/adarsh0718/shelfradar)** | Official standalone open-source repository containing the full codebase. |
-| 👥 **Team Collaborator** | **[@sravya-99](https://github.com/sravya-99)** | [Accept Invitation Link](https://github.com/adarsh0718/shelfradar/invitations) *(Write access enabled)* |
+| 👥 **Team Collaborators** | **[@sravya-99](https://github.com/sravya-99)**, **[@chandrikamahesh12](https://github.com/chandrikamahesh12)**, **[@NithyaAmrutha](https://github.com/NithyaAmrutha)** | [Accept Invitations Link](https://github.com/adarsh0718/shelfradar/invitations) *(Write access enabled)* |
 
 ---
 
@@ -191,6 +191,8 @@ The script will automatically create the DynamoDB table, IAM execution role, Lam
 
 - **Project Lead & Developer**: [Adarsh (@adarsh0718)](https://github.com/adarsh0718)
 - **Team Collaborator**: [Sravya (@sravya-99)](https://github.com/sravya-99)
+- **Team Collaborator**: [Chandrika (@chandrikamahesh12)](https://github.com/chandrikamahesh12)
+- **Team Collaborator**: [Nithya Amrutha (@NithyaAmrutha)](https://github.com/NithyaAmrutha)
 - **Repository**: [https://github.com/adarsh0718/shelfradar](https://github.com/adarsh0718/shelfradar)
 
 ---
